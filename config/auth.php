@@ -1,5 +1,7 @@
 <?php
 
+use BOK\Admin\Admin;
+
 return [
 
     /*
@@ -46,6 +48,12 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+         'admins' => [
+             'driver' => 'session',
+             'provider' => 'admins',
+             'hash' => false
+         ],
     ],
 
     /*
@@ -71,10 +79,10 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'admins' => [
+             'driver' => 'eloquent',
+             'model' => Admin::class,
+         ],
     ],
 
     /*

@@ -52,4 +52,13 @@ class AdminRepository extends BaseRepository
             throw new AdminNotFoundErrorException ($e);
         }
     }
+
+    public function findAdminByEmail(string $email): Admin
+    {
+        try {
+            return $this->model->where(compact('email'))->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            throw new AdminNotFoundErrorException($e);
+        }
+    }
 }

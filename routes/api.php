@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'v1'], static function () {
 
     Route::group(['namespace' => 'Auth'], static function (){
-        //
+        Route::post('authentication', 'AuthenticationApiController@store')->name('auth.store');
     });
 
     Route::group(['namespace' => 'Admin'], static function (){

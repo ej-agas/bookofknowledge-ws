@@ -13,7 +13,9 @@
         "jsdecena/baserepo": "^1.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "nicolaslopezj/searchable": "^1.11"
+        "lcobucci/jwt": "^3.3",
+        "nicolaslopezj/searchable": "^1.11",
+        "ext-json": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

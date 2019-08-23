@@ -15,7 +15,7 @@ class Admin extends Authenticatable implements UserInterface
 
     public const RESOURCE_KEY = 'admins';
 
-    public const INCLUDES = [];
+    public const INCLUDES = '';
 
     public const FILLABLES = [
         'first_name',
@@ -76,18 +76,18 @@ class Admin extends Authenticatable implements UserInterface
         // TODO: Implement getEmail() method.
     }
 
-    public function getUserId()
+    public function getUserId(): string
     {
-        // TODO: Implement getUserId() method.
+        return $this->id;
     }
 
-    public function getClassInstance()
+    public function getClassInstance(): Admin
     {
-        // TODO: Implement getClassInstance() method.
+        return $this;
     }
 
-    public function getFullNameAttribute()
+    public function getFullNameAttribute(): string
     {
-        // TODO: Implement getFullNameAttribute() method.
+        return "{$this->first_name} {$this->middle_name} {$this->last_name}";
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1'], static function () {
+
+    Route::group(['namespace' => 'Auth'], static function (){
+        //
+    });
+
+    Route::group(['namespace' => 'Admin'], static function (){
+        Route::apiResource('admins', 'AdminApiController');
+    });
 });

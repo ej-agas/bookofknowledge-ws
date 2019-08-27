@@ -6,11 +6,14 @@ namespace BOK\Auth\Repositories;
 
 use BOK\Admin\Admin;
 use Lcobucci\JWT\Token;
+use BOK\Teacher\Teacher;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
 use BOK\Admin\Repositories\AdminRepository;
+use BOK\Teacher\Repositories\TeacherRepository;
 use BOK\Admin\Exceptions\AdminNotFoundErrorException;
+use BOK\Teacher\Exceptions\TeacherNotFoundErrorException;
 
 class AuthRepository
 {
@@ -52,7 +55,7 @@ class AuthRepository
         return $token->getToken(new Sha256, new Key($secret));
     }
 
-    public function parseUser(string $type, $id): Admin
+    public function parseUser(string $type, $id)
     {
         switch ($type) {
             case Admin::RESOURCE_KEY:
@@ -66,6 +69,17 @@ class AuthRepository
                 } catch (AdminNotFoundErrorException $e) {
                     abort(404);
                 }
+                break;
+            case Teacher::RESOURCE_KEY:
+                try {
+                    $teacherRepo = new TeacherRepository(new Teacher);
+                    $user = $teacherRepo->findTeacherById($id);
+
+                    auth(Admin::RESOURCE_KEY)->login($user);
+                } catch (TeacherNotFoundErrorException $e) {
+                    abort(404);
+                }
+                break;
         }
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use BOK\Admin\Admin;
+use BOK\Teacher\Teacher;
 
 return [
 
@@ -54,6 +55,12 @@ return [
              'provider' => 'admins',
              'hash' => false
          ],
+
+        'teachers' => [
+            'driver' => 'session',
+            'provider' => 'teachers',
+            'hash' => false
+        ]
     ],
 
     /*
@@ -83,6 +90,11 @@ return [
              'driver' => 'eloquent',
              'model' => Admin::class,
          ],
+
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model' => Teacher::class
+        ]
     ],
 
     /*

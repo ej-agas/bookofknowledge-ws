@@ -1,19 +1,19 @@
 <?php
 
 
-namespace BOK\Admin;
+namespace BOK\Teacher;
 
 use Ramsey\Uuid\Uuid;
 use BOK\Base\UserInterface;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Authenticatable implements UserInterface
+class Teacher extends Authenticatable implements UserInterface
 {
     use SoftDeletes, SearchableTrait;
 
-    public const RESOURCE_KEY = 'admins';
+    public const RESOURCE_KEY = 'teachers';
 
     public const INCLUDES = '';
 
@@ -23,6 +23,7 @@ class Admin extends Authenticatable implements UserInterface
         'last_name',
         'email',
         'password',
+        'subject'
     ];
 
     /**
@@ -41,11 +42,6 @@ class Admin extends Authenticatable implements UserInterface
 
     public $incrementing = false;
 
-    /**
-     * Searchable rules.
-     *
-     * @var array
-     */
     protected $searchable = [
         /**
          * Columns and their priority in search results.
@@ -66,12 +62,12 @@ class Admin extends Authenticatable implements UserInterface
     {
         parent::boot();
 
-        self::creating(static function ($admin) {
-            $admin->id = (string)Uuid::uuid4();
+        self::creating(static function ($teacher) {
+            $teacher->id = (string)Uuid::uuid4();
         });
     }
 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -81,7 +77,7 @@ class Admin extends Authenticatable implements UserInterface
         return $this->id;
     }
 
-    public function getClassInstance(): Admin
+    public function getClassInstance(): Teacher
     {
         return $this;
     }

@@ -9,7 +9,6 @@ use Tests\DataProviders\UserDataProvider;
 
 /**
  * Class AdminTest
- * @covers \BOK\Http\Controllers\Admin\AdminApiController
  */
 class AdminTest extends TestCase
 {

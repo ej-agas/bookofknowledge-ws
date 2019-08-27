@@ -8,10 +8,6 @@ use Tests\TestCase;
 use BOK\Admin\Admin;
 use Tests\DataProviders\UserDataProvider;
 
-/**
- * Class AdminAuthenticationTest
- * @covers \BOK\Http\Controllers\Auth\AuthenticationApiController
- */
 class AdminAuthenticationTest extends TestCase
 {
     use UserDataProvider;

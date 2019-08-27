@@ -8,10 +8,6 @@ use Tests\TestCase;
 use BOK\Teacher\Teacher;
 use Tests\DataProviders\UserDataProvider;
 
-/**
- * Class TeacherTest
- * @covers \BOK\Http\Controllers\Teacher\TeacherApiController
- */
 class TeacherTest extends TestCase
 {
     use UserDataProvider;

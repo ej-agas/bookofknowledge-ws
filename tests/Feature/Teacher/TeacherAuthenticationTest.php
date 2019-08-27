@@ -22,7 +22,7 @@ class TeacherAuthenticationTest extends TestCase
         $payload = [
             'email' => $teacher->email,
             'password' => $this->faker->word,
-            'type' => Teacher::RESOURCE_KEY
+            'subject' => Teacher::RESOURCE_KEY
         ];
 
         $this->post(route('auth.store'), $payload)
@@ -41,7 +41,7 @@ class TeacherAuthenticationTest extends TestCase
         $payload = [
             'email' => $teacher->email,
             'password' => 'secret',
-            'type' => Teacher::RESOURCE_KEY
+            'subject' => Teacher::RESOURCE_KEY
         ];
 
         $this->post(route('auth.store'), $payload)

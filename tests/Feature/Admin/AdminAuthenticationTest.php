@@ -19,7 +19,7 @@ class AdminAuthenticationTest extends TestCase
         $payload = [
             'email' => $admin->email,
             'password' => $this->faker->word,
-            'type' => Admin::RESOURCE_KEY
+            'subject' => Admin::RESOURCE_KEY
         ];
 
         $this->post(route('auth.store'), $payload)
@@ -38,7 +38,7 @@ class AdminAuthenticationTest extends TestCase
         $payload = [
             'email' => $admin->email,
             'password' => 'secret',
-            'type' => Admin::RESOURCE_KEY
+            'subject' => Admin::RESOURCE_KEY
         ];
 
         $this->post(route('auth.store'), $payload)

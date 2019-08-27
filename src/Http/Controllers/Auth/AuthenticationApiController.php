@@ -42,7 +42,7 @@ class AuthenticationApiController extends Controller
 
     public function store(AuthenticationRequest $request)
     {
-        switch ($request->input('type')) {
+        switch ($request->input('subject')) {
             case Admin::RESOURCE_KEY:
                 $attempt = auth('admins')->attempt($request->only('email', 'password'));
 

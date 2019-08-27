@@ -13,13 +13,13 @@ class AuthenticationRequest extends BaseFormRequest
 {
     public function rules(): array
     {
-        $types = [
+        $subjects = [
             Admin::RESOURCE_KEY,
             Teacher::RESOURCE_KEY
         ];
 
         return [
-            'type' => ['required', Rule::in($types)]
+            'subject' => ['required', Rule::in($subjects)]
         ];
     }
 }

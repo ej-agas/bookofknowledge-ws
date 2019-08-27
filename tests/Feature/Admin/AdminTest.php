@@ -7,9 +7,6 @@ use BOK\Admin\Admin;
 use Tests\DataProviders\UserDataProvider;
 
 
-/**
- * Class AdminTest
- */
 class AdminTest extends TestCase
 {
     use UserDataProvider;

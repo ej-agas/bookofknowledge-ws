@@ -13,6 +13,17 @@ class AdminTest extends TestCase
 
     /**
      * @test
+     */
+    public function it_should_error_when_showing_the_admin(): void
+    {
+        factory(Admin::class)->create();
+
+        $this->get(route('admins.show', 100))
+            ->assertJson(__('errors.not_found'))
+            ->assertStatus(404);
+    }
+    /**
+     * @test
      * @param $data
      * @dataProvider userProvider
      */

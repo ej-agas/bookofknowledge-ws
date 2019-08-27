@@ -11,6 +11,11 @@ use BOK\Admin\Exceptions\CreateAdminErrorException;
 use BOK\Admin\Exceptions\UpdateAdminErrorException;
 use BOK\Admin\Exceptions\AdminNotFoundErrorException;
 
+/**
+ * Class AdminUnitTest
+ * @covers \BOK\Admin\Admin
+ * @covers \BOK\Admin\Repositories\AdminRepository
+ */
 class AdminUnitTest extends TestCase
 {
     use UserDataProvider;

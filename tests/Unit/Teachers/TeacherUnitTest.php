@@ -13,6 +13,11 @@ use BOK\Teacher\Exceptions\UpdateTeacherErrorException;
 use BOK\Teacher\Exceptions\DeleteTeacherErrorException;
 use BOK\Teacher\Exceptions\TeacherNotFoundErrorException;
 
+/**
+ * Class TeacherUnitTest
+ * @covers \BOK\Teacher\Teacher
+ * @covers \BOK\Teacher\Repositories\TeacherRepository
+ */
 class TeacherUnitTest extends TestCase
 {
     use UserDataProvider;

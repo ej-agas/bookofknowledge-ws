@@ -47,7 +47,7 @@ class AuthenticationApiController extends Controller
                 $attempt = auth('admins')->attempt($request->only('email', 'password'));
 
                 if (!$attempt) {
-                    return response()->json(trans('errors.login'), 401);
+                    return response()->json(__('errors.login'), 401);
                 }
 
                 $admin = $this->adminRepo->findAdminByEmail($request->input('email'));
@@ -77,7 +77,7 @@ class AuthenticationApiController extends Controller
                 $attempt = auth('teachers')->attempt($request->only('email', 'password'));
 
                 if (!$attempt) {
-                    return response()->json(trans('errors.login'),401);
+                    return response()->json(__('errors.login'),401);
                 }
 
                 $teacher = $this->teacherRepo->findTeacherByEmail($request->input('email'));

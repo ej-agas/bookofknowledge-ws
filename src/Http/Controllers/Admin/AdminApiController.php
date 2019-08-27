@@ -48,7 +48,7 @@ class AdminApiController extends Controller
 
             return response()->json($data->toArray());
         } catch (AdminNotFoundErrorException $e) {
-            return response()->json(trans('errors.not_found'), 404);
+            return response()->json(__('errors.not_found'), 404);
         }
     }
     /**
@@ -68,7 +68,7 @@ class AdminApiController extends Controller
 
             return response()->json($data->toArray(), 201);
         } catch (CreateAdminErrorException $e) {
-            return response()->json(trans('errors.create'), 400);
+            return response()->json(__('errors.create'), 400);
         }
     }
 
@@ -94,9 +94,9 @@ class AdminApiController extends Controller
 
             return response()->json($data->toArray());
         } catch (AdminNotFoundErrorException $e) {
-            return response()->json(trans('errors.not_found'), 404);
+            return response()->json(__('errors.not_found'), 404);
         } catch (UpdateAdminErrorException $e) {
-            return response()->json(trans('errors.update'), 400);
+            return response()->json(__('errors.update'), 400);
         }
     }
 }

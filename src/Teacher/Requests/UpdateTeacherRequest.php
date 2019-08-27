@@ -1,11 +1,12 @@
 <?php
 
 
-namespace BOK\Admin\Requests;
+namespace BOK\Teacher\Requests;
+
 
 use BOK\Base\BaseFormRequest;
 
-class CreateAdminRequest extends BaseFormRequest
+class UpdateTeacherRequest extends BaseFormRequest
 {
     /**
      * @return array
@@ -15,8 +16,7 @@ class CreateAdminRequest extends BaseFormRequest
         return [
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'email' => ['required', 'email', 'unique:admins'],
-            'password' => ['required', 'min:6'],
+            'email' => ['required', 'email', 'unique:teachers']
         ];
     }
 }

@@ -26,6 +26,12 @@ class Teacher extends Authenticatable implements UserInterface
         'subject'
     ];
 
+    public const SUBJECTS = [
+        'AP' => 'ap',
+        'ENGLISH' => 'english',
+        'SCIENCE' => 'science'
+    ];
+
     /**
      * @param $password
      */

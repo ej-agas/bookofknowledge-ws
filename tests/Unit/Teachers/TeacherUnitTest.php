@@ -59,7 +59,7 @@ class TeacherUnitTest extends TestCase
      */
     public function it_can_create_teacher($data): void
     {
-        $data['subject'] = $this->faker->randomElement(['ap', 'english', 'science']);
+        $data['subject'] = $this->faker->randomElement(Teacher::SUBJECTS);
         $teacherRepo = new TeacherRepository(new Teacher);
         $teacher = $teacherRepo->createTeacher($data);
 

@@ -40,7 +40,7 @@ class AdminTest extends TestCase
      * @dataProvider userProvider
      * @param $data
      */
-    public function it_should_create_the_employee($data): void
+    public function it_should_create_the_admin($data): void
     {
         $this->post(route('admins.store'), $data)
              ->assertStatus(201)

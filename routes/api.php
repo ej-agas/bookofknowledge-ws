@@ -22,4 +22,8 @@ Route::group(['prefix' => 'v1'], static function () {
     Route::group(['namespace' => 'Admin'], static function (){
         Route::apiResource('admins', 'AdminApiController');
     });
+
+    Route::group(['namespace' => 'Teacher'], static function() {
+        Route::apiResource('teachers', 'TeacherApiController');
+    });
 });

@@ -24,7 +24,7 @@ class AdminAuthenticationTest extends TestCase
 
         $this->post(route('auth.store'), $payload)
             ->assertStatus(401)
-            ->assertJson(trans('errors.login'));
+            ->assertJson(__('errors.login'));
     }
     /**
      * @test

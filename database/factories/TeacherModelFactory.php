@@ -24,6 +24,6 @@ $factory->define(Teacher::class, static function (Faker $faker) {
         'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => 'secret',
-        'subject' => $faker->randomElement(['ap', 'science', 'english'])
+        'subject' => $faker->randomElement(Teacher::SUBJECTS)
     ];
 });

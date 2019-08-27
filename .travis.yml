@@ -24,7 +24,8 @@ before_script:
   - php artisan migrate --no-interaction -vvv
   - composer dump-autoload
 script:
-  - vendor/bin/phpunit --coverage-clover tests/logs/clover.xml
+  - mkdir -p build/logs
+  - vendor/bin/phpunit tests --coverage-clover build/logs/clover.xml
 
-after_script:
-  - php vendor/bin/coveralls -v
+after_success:
+  - travis_retry php vendor/bin/php-coveralls

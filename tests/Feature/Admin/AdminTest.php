@@ -5,11 +5,25 @@ namespace Tests\Feature\Admin;
 use Tests\TestCase;
 use BOK\Admin\Admin;
 use Tests\DataProviders\UserDataProvider;
+use BOK\Admin\Repositories\AdminRepository;
+use Illuminate\Validation\ValidationException;
 
 
 class AdminTest extends TestCase
 {
     use UserDataProvider;
+
+    /**
+     * @test
+     * @dataProvider userProvider
+     * @param $data
+     */
+    public function it_should_error_when_updating_non_existing_admin($data): void
+    {
+        $this->put(route('admins.update', $this->faker->uuid), $data)
+            ->assertStatus(404)
+            ->assertJson(__('errors.not_found'));
+    }
 
     /**
      * @test

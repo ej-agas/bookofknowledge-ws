@@ -17,6 +17,80 @@ class AdminUnitTest extends TestCase
 
     /**
      * @test
+     */
+    public function it_can_show_admin_email(): void
+    {
+        $admin = factory(Admin::class)->create();
+        $this->assertEquals($admin->email, $admin->getEmail());
+    }
+    /**
+     * @test
+     */
+    public function it_can_show_admin_id()
+    {
+        $admin = factory(Admin::class)->create();
+        $this->assertEquals($admin->id, $admin->getUserId());
+    }
+    /**
+     * @test
+     * @param $data
+     * @dataProvider userProvider
+     */
+    public function it_can_show_class_instance($data): void
+    {
+        $admin = new Admin($data);
+        $admin = $admin->getClassInstance();
+
+        $this->assertInstanceOf(Admin::class, $admin);
+    }
+    /**
+     * @test
+     * @throws UpdateAdminErrorException
+     */
+    public function it_can_throw_exception_when_updating_admin(): void
+    {
+        $this->expectException(UpdateAdminErrorException::class);
+
+        $admin = factory(Admin::class)->create();
+
+        $payload = [
+            'first_name' => null
+        ];
+
+        $adminRepo = new AdminRepository($admin);
+        $adminRepo->updateAdmin($payload);
+    }
+    /**
+     * @test
+     * @throws CreateAdminErrorException
+     */
+    public function it_can_throw_exception_when_creating_admin(): void
+    {
+        $this->expectException(CreateAdminErrorException::class);
+
+        $payload = [
+            'first_name' => null,
+        ];
+
+        $adminRepo = new AdminRepository(new Admin);
+        $adminRepo->createAdmin($payload);
+    }
+    /**
+     * @test
+     * @throws AdminNotFoundErrorException
+     */
+    public function it_can_throw_exception_when_finding_non_existing_email(): void
+    {
+        $this->expectException(AdminNotFoundErrorException::class);
+
+        $admin = factory(Admin::class)->create();
+
+        $adminRepo = new AdminRepository(new $admin);
+        $adminRepo->findAdminByEmail('example@email.com');
+    }
+
+    /**
+     * @test
      * @dataProvider userProvider
      * @param $data
      * @throws AdminNotFoundErrorException

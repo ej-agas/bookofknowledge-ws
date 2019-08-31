@@ -12,6 +12,9 @@ class AdminAuthenticationTest extends TestCase
 {
     use UserDataProvider;
 
+    /**
+     * @test
+     */
     public function it_should_throw_an_error_with_the_wrong_login_credentials(): void
     {
         $admin = factory(Admin::class)->create();

@@ -40,7 +40,7 @@ class AdminRepository extends BaseRepository
         try {
             return $this->model->create($data);
         } catch (QueryException $e) {
-            throw new CreateAdminErrorException ($e);
+            throw new CreateAdminErrorException($e);
         }
     }
 
@@ -49,7 +49,7 @@ class AdminRepository extends BaseRepository
         try {
             return $this->model->findOrFail($id);
         } catch (ModelNotFoundException $e) {
-            throw new AdminNotFoundErrorException ($e);
+            throw new AdminNotFoundErrorException($e);
         }
     }
 

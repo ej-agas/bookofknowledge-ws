@@ -5,8 +5,6 @@ namespace Tests\Feature\Admin;
 use Tests\TestCase;
 use BOK\Admin\Admin;
 use Tests\DataProviders\UserDataProvider;
-use BOK\Admin\Repositories\AdminRepository;
-use Illuminate\Validation\ValidationException;
 
 
 class AdminTest extends TestCase

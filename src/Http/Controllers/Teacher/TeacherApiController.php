@@ -32,6 +32,11 @@ class TeacherApiController extends Controller
         $this->teacherRepo = $teacherRepo;
     }
 
+    /**
+     * @param $teacherId
+     * @return JsonResponse
+     * @throws DeleteTeacherErrorException
+     */
     public function destroy($teacherId)
     {
         try {
@@ -42,14 +47,14 @@ class TeacherApiController extends Controller
             return response()->json(__('success.delete'), 202);
         } catch (TeacherNotFoundErrorException $e) {
             return response()->json(__('errors.show'),404);
-        } catch (DeleteTeacherErrorException $e) {
-            return response()->json(__('errors.delete'),400);
         }
     }
+
     /**
      * @param $teacherId
-     * @param  UpdateTeacherRequest  $request
+     * @param UpdateTeacherRequest $request
      * @return JsonResponse
+     * @throws UpdateTeacherErrorException
      */
     public function update($teacherId, UpdateTeacherRequest $request): JsonResponse
     {
@@ -70,8 +75,6 @@ class TeacherApiController extends Controller
             return response()->json($data->toArray(), 200);
         } catch (TeacherNotFoundErrorException $e) {
             return response()->json(__('errors.show'), 404);
-        } catch (UpdateTeacherErrorException $e) {
-            return response()->json(__('errors.update'), 400);
         }
     }
     /**
@@ -95,25 +98,23 @@ class TeacherApiController extends Controller
             return response()->json(__('errors.show'), 404);
         }
     }
+
     /**
-     * @param  CreateTeacherRequest  $request
+     * @param CreateTeacherRequest $request
      * @return JsonResponse
+     * @throws CreateTeacherErrorException
      */
     public function store(CreateTeacherRequest $request): JsonResponse
     {
-        try {
-            $teacher = $this->teacherRepo->createTeacher($request->only(Teacher::FILLABLES));
+        $teacher = $this->teacherRepo->createTeacher($request->only(Teacher::FILLABLES));
 
-            $data = $this->teacherRepo->processItemTransformer(
-                $teacher,
-                new TeacherTransformer,
-                Teacher::RESOURCE_KEY,
-                Teacher::INCLUDES
-            );
+        $data = $this->teacherRepo->processItemTransformer(
+            $teacher,
+            new TeacherTransformer,
+            Teacher::RESOURCE_KEY,
+            Teacher::INCLUDES
+        );
 
-            return response()->json($data->toArray(), 201);
-        } catch (CreateTeacherErrorException $e) {
-            return response()->json(__('errors.create'));
-        }
+        return response()->json($data->toArray(), 201);
     }
 }

@@ -10,5 +10,4 @@ interface UserInterface
 
     public function getClassInstance();
 
-    public function getFullNameAttribute();
 }

@@ -14,6 +14,26 @@ class TeacherTest extends TestCase
 
     /**
      * @test
+     * @dataProvider userProvider
+     */
+    public function it_should_error_when_updating_non_existent_teacher($data)
+    {
+        $this->put(route('teachers.update', 100), $data)
+            ->assertStatus(404)
+            ->assertJson(__('errors.show'));
+    }
+    /**
+     * @test
+     */
+    public function it_should_error_when_showing_non_existent_teacher()
+    {
+        factory(Teacher::class)->create();
+        $this->get(route('teachers.show', 100))
+            ->assertStatus(404)
+            ->assertJson(__('errors.show'));
+    }
+    /**
+     * @test
      */
     public function it_should_soft_delete_the_teacher(): void
     {

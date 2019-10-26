@@ -51,31 +51,29 @@ class AdminApiController extends Controller
             return response()->json(__('errors.not_found'), 404);
         }
     }
+
     /**
-     * @param  CreateAdminRequest  $request
+     * @param CreateAdminRequest $request
      * @return JsonResponse
+     * @throws CreateAdminErrorException
      */
     public function store(CreateAdminRequest $request): JsonResponse
     {
-        try {
-            $admin = $this->adminRepo->createAdmin($request->only(Admin::FILLABLES));
-            $data = $this->adminRepo->processItemTransformer(
-                $admin,
-                new AdminTransformer,
-                Admin::RESOURCE_KEY,
-                Admin::INCLUDES
-            );
-
-            return response()->json($data->toArray(), 201);
-        } catch (CreateAdminErrorException $e) {
-            return response()->json(__('errors.create'), 400);
-        }
+        $admin = $this->adminRepo->createAdmin($request->only(Admin::FILLABLES));
+        $data = $this->adminRepo->processItemTransformer(
+            $admin,
+            new AdminTransformer,
+            Admin::RESOURCE_KEY,
+            Admin::INCLUDES
+        );
+        return response()->json($data->toArray(), 201);
     }
 
     /**
      * @param  $adminId
-     * @param  UpdateAdminRequest  $request
+     * @param UpdateAdminRequest $request
      * @return JsonResponse
+     * @throws UpdateAdminErrorException
      */
     public function update($adminId, UpdateAdminRequest $request): JsonResponse
     {
@@ -95,8 +93,6 @@ class AdminApiController extends Controller
             return response()->json($data->toArray());
         } catch (AdminNotFoundErrorException $e) {
             return response()->json(__('errors.not_found'), 404);
-        } catch (UpdateAdminErrorException $e) {
-            return response()->json(__('errors.update'), 400);
         }
     }
 }

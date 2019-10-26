@@ -87,9 +87,4 @@ class Teacher extends Authenticatable implements UserInterface
     {
         return $this;
     }
-
-    public function getFullNameAttribute(): string
-    {
-        return "{$this->first_name} {$this->middle_name} {$this->last_name}";
-    }
 }

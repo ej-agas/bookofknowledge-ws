@@ -102,7 +102,6 @@ class AuthenticationApiController extends Controller
                 ]);
 
                 return response()->json($merged, 200);
-                break;
         }
     }
 }
